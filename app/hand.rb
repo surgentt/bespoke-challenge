@@ -5,8 +5,4 @@ class Hand
     @cards = cards
   end
 
-  def hello
-    'Hello!'
-  end
-
 end
