@@ -11,8 +11,21 @@ describe Turn do
     expect(self.hand2).to eq(hand2)
   end
 
-  it '#who_won returns either hand1 or hand2' do
-    expect(turn.who_won).to eq('hand1')
+  it '#winner returns either hand1 or hand2' do
+    expect(%w[hand1 hand2].include?(turn.winner)).to eq(true)
   end
+
+  it '#category_winner returns either hand1, hand2 or tie. This will prevent further processsing' do
+    expect(%w[hand1 hand2 tie].include?(turn.category_winner)).to eq(true)
+  end
+
+  it '#highest_hand_category checks the best categories of a hand and return the highest' do
+
+  end
+
+  it '#category_tie_breaker asks the hand for the highest card in their category and returns data' do
+    
+  end
+
 
 end

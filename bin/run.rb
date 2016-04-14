@@ -9,7 +9,7 @@ text.each_line do |line|
   hand1 = Hand.new(cards[0..4])
   hand2 = Hand.new(cards[5..9])
   turn = Turn.new(hand1, hand2)
-  winner = turn.who_won
+  winner = turn.winner
   if winner == 'hand1'
     player1_wins += 1
   elsif winner == 'hand2'

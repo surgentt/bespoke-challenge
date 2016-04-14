@@ -1,6 +1,6 @@
 ##Pocker Playing
 
-# Order of operations
+# Order of Operations
 1. Setup a new ruby based application.
 1. Allow hands and turns to be initialized by reading the text file
 2. Allow hands to be asked what there best category is. "Full House, vs. High Card"

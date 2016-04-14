@@ -1,15 +1,16 @@
 class Hand
   HAND_CATEGORIES = ['High Card', 'One Pair', 'Two Pair', 'Three of a Kind', 'Straight', 'Flush', 'Full House', 'Four of a Kind', 'Straight Flush', 'Royal Flush']
 
-  attr_reader :cards
+  attr_reader :cards, :best_category
 
   def initialize(cards)
     @cards = cards
+    @best_category = self.get_best_category
   end
 
-  def best_category
+  def get_best_category
     if royal_flush?
-      self.hand_category 'Royal Flush'
+      'Royal Flush'
     elsif straight_flush?
       'Straight Flush'
     elsif four_of_a_kind?
@@ -27,8 +28,12 @@ class Hand
     elsif one_pair?
       'One Pair'
     else
-      high_card
+      'High Card'
     end
+  end
+
+  def highest_card_in_category
+    # needs to return the highest card for best category
   end
 
   private
@@ -67,10 +72,6 @@ class Hand
 
   def one_pair?
     false
-  end
-
-  def high_card
-    'High Card'
   end
 
 end
