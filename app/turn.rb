@@ -33,7 +33,7 @@ class Turn
     elsif  hand1.best_int_card_in_category < hand2.best_int_card_in_category
       'hand2'
     else
-      puts 'This should NEVER happen'
+      puts 'This tie NEVER happen'
     end
   end
 
