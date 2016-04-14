@@ -10,4 +10,8 @@ describe Hand do
     expect(hand2.cards).to eq(%w[7D 2S 5D 3S AC])
   end
 
+  it '#best_category returns the highest hand category that the player had' do
+    expect(Hand::HAND_CATEGORIES.include?(hand1.best_category)).to eq(true)
+  end
+
 end

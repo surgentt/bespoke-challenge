@@ -1,5 +1,16 @@
 ##Pocker Playing
 
+# Order of operations
+1. Setup a new ruby based application.
+1. Allow hands and turns to be initialized by reading the text file
+2. Allow hands to be asked what there best category is. "Full House, vs. High Card"
+3. Allow turns to determine if there is a clear winner, by ranking the best categories of each hand vs each other.
+4. In the event of a tie break as determined by the turn allow hands to return there top cards in that hand.
+5. Run the entire game in the run.rb, determine number of wins
+
+
+# Game Rules
+
 In the card game poker, a hand consists of five cards and are ranked, from lowest to highest, in the following way:
 
 High Card: Highest value card.

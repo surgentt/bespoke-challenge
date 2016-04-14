@@ -7,7 +7,11 @@ class Turn
   end
 
   def who_won
-    'hand1'
+    if higher_hand_catergory
+
+    else tie_breaker
+
+    end
   end
 
 end

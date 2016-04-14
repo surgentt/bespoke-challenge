@@ -11,7 +11,7 @@ describe Turn do
     expect(self.hand2).to eq(hand2)
   end
 
-  it '#who_won' do
+  it '#who_won returns either hand1 or hand2' do
     expect(turn.who_won).to eq('hand1')
   end
 
