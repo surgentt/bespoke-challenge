@@ -24,7 +24,7 @@ describe Turn do
   end
 
   it '#category_tie_breaker asks the hand for the highest card in their category and returns data' do
-    
+
   end
 
 

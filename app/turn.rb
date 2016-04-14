@@ -26,8 +26,15 @@ class Turn
   end
 
   def category_tie_breaker
-    # Only request for the highest card from hands if that knowledge is required
-    'hand1' # place holder
+    hand1.set_highest_card_in_category
+    hand2.set_highest_card_in_category
+    if hand1.best_int_card_in_category > hand2.best_int_card_in_category
+      'hand1'
+    elsif  hand1.best_int_card_in_category < hand2.best_int_card_in_category
+      'hand2'
+    else
+      puts 'This should NEVER happen'
+    end
   end
 
 end

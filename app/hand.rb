@@ -2,6 +2,7 @@ class Hand
   HAND_CATEGORIES = ['High Card', 'One Pair', 'Two Pair', 'Three of a Kind', 'Straight', 'Flush', 'Full House', 'Four of a Kind', 'Straight Flush', 'Royal Flush']
 
   attr_reader :cards, :best_category
+  attr_accessor :best_int_card_in_category
 
   def initialize(cards)
     @cards = cards
@@ -32,8 +33,16 @@ class Hand
     end
   end
 
-  def highest_card_in_category
-    # needs to return the highest card for best category
+  def set_highest_card_in_category
+    conversions = %w[T J Q K A]
+    int_of_cards = self.cards.map do |card|
+      if conversions.include?(card[0])
+        conversions.index(card[0])+10
+      else
+        card[0].to_i
+      end
+    end
+    self.best_int_card_in_category = int_of_cards.max
   end
 
   private

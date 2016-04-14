@@ -18,4 +18,12 @@ describe Hand do
     expect(hand1.best_category).to eq('High Card')
   end
 
+  it '#best_int_card_in_category return the highest integer rating of card for a specific category' do
+
+  end
+
+  it '#set_highest_card_in_category sets the highest card based upon the category' do
+
+  end
+
 end
