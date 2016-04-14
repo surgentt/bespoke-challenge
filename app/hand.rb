@@ -1,7 +1,8 @@
 class Hand
+  attr_reader :cards
 
-  def initialize
-
+  def initialize(cards)
+    @cards = cards
   end
 
   def hello
