@@ -26,4 +26,59 @@ describe Hand do
 
   end
 
+  it '#royal_flush? detects Ten, Jack, Queen, King, Ace, in same suit'  do
+    hand = Hand.new(%w[TS JS QS KS AS])
+    expect(hand.best_category).to eq('Royal Flush')
+  end
+
+  it '#straight_flush? detects All cards are consecutive values of same suit.' do
+    hand = Hand.new(%w[9S TS JS QS KS])
+    expect(hand.best_category).to eq('Straight Flush')
+  end
+
+  it '#four_of_a_kind? detects Four cards of the same value' do
+    hand = Hand.new(%w[TS TH TD TC KS])
+    expect(hand.best_category).to eq('Four of a Kind')
+  end
+
+  it '#four_of_a_kind? detects Four cards of the same value' do
+    hand = Hand.new(%w[KS TS TH TD TC])
+    expect(hand.best_category).to eq('Four of a Kind')
+  end
+
+  it '#full_house? detect Three of a kind and a pair' do
+    hand = Hand.new(%w[2H 2D 4C 4D 4S])
+    expect(hand.best_category).to eq('Full House')
+  end
+
+  it '#flush? detect if all cards are the same suit' do
+    hand = Hand.new(%w[3S 8S 2S 9S KS])
+    expect(hand.best_category).to eq('Flush')
+  end
+
+  it '#straight? detects if All cards are consecutive values.' do
+    hand = Hand.new(%w[3D 4H 5D 6D 7D])
+    expect(hand.best_category).to eq('Straight')
+  end
+
+  it '#three_of_a_kind? detects if Three cards of the same value.' do
+    hand = Hand.new(%w[2D 9C AS AH AC])
+    expect(hand.best_category).to eq('Three of a Kind')
+  end
+
+  it '#three_of_a_kind? detects if Three cards of the same value.' do
+    hand = Hand.new(%w[2D 9C AS AH AC])
+    expect(hand.best_category).to eq('Three of a Kind')
+  end
+
+  it '#two_pair? detect Two different pairs.' do
+    hand = Hand.new(%w[2C 3S 3S 8D 8D])
+    expect(hand.best_category).to eq('Two Pair')
+  end
+
+  it '#one_pair? detects Two cards of the same value.' do
+    hand = Hand.new(%w[2C 3S 8S 8D TD])
+    expect(hand.best_category).to eq('One Pair')
+end
+
 end

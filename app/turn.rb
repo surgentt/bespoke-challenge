@@ -18,7 +18,7 @@ class Turn
     hand2_rating = Hand::HAND_CATEGORIES.index(hand2.best_category)
     if hand1_rating > hand2_rating
       self.category_winner = 'hand1'
-    elsif hand2_rating > hand1_rating
+    elsif hand1_rating < hand2_rating
       self.category_winner = 'hand2'
     else
       self.category_winner = 'tie'

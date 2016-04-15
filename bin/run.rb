@@ -3,7 +3,7 @@ require_relative '../config/environment'
 player1_wins = 0
 player2_wins = 0
 
-text=File.open('./lib/pocker.txt').read
+text=File.open('./lib/poker.txt').read
 text.each_line do |line|
   cards = line.split(' ')
   hand1 = Hand.new(cards[0..4])

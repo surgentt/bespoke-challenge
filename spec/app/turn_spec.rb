@@ -27,5 +27,9 @@ describe Turn do
 
   end
 
+  it '#full_house competition Highest card will not always work' do
+
+  end
+
 
 end
