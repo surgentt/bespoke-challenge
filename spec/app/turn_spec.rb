@@ -49,11 +49,18 @@ describe Turn do
       expect(turn.winner).to eq('hand1')
     end
 
-    it 'picks a winner on the second best card for Full House', foucs:true do
+    it 'picks a winner on for Full House' do
       hand_a = Hand.new(%w[2H 2D 4C 4D 4S]) # Full House, With Three Fours
       hand_b = Hand.new(%w[3C 3D 3S 9S 9D]) # Full House, with Three Threes
       turn = Turn.new(hand_a, hand_b)
       expect(turn.winner).to eq('hand1')
+    end
+
+    it 'picks a winner on for Full House' do
+      hand_a = Hand.new(%w[5H 5D 4C 4D 4S]) # Full House, With Three Fours
+      hand_b = Hand.new(%w[4C 4D 4S 9S 9D]) # Full House, with Three Threes
+      turn = Turn.new(hand_a, hand_b)
+      expect(turn.winner).to eq('hand2')
     end
 
   end

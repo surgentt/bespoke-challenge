@@ -20,7 +20,7 @@ end
 puts "Player 1 won #{player1_wins} times"
 puts "Player 2 won #{player2_wins} times"
 if player1_wins > player2_wins
-  'Player one is the better player'
+  puts 'Player one is the better player'
 else
-  'Player two is the better player'
+  puts 'Player two is the better player'
 end

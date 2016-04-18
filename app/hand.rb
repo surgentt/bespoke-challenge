@@ -72,9 +72,16 @@ class Hand
     i = 1
     while i < self.int_of_cards.length do
       check = (self.int_of_cards[i] - self.int_of_cards[i-1] == 1)
+      unless check
+        i=5
+      end
       i+=1
     end
-    check
+    check || straight_low_ace?
+  end
+
+  def straight_low_ace?
+    check = self.cards.map{|i| i[0]} == %w[A 2 3 4 5]
   end
 
   def three_of_a_kind?
