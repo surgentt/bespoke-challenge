@@ -18,14 +18,6 @@ describe Hand do
     expect(hand1.best_category).to eq('High Card')
   end
 
-  it '#best_int_card_in_category return the highest integer rating of card for a specific category' do
-
-  end
-
-  it '#set_highest_card_in_category sets the highest card based upon the category' do
-
-  end
-
   it '#royal_flush? detects Ten, Jack, Queen, King, Ace, in same suit'  do
     hand = Hand.new(%w[TS JS QS KS AS])
     expect(hand.best_category).to eq('Royal Flush')
@@ -79,6 +71,57 @@ describe Hand do
   it '#one_pair? detects Two cards of the same value.' do
     hand = Hand.new(%w[2C 3S 8S 8D TD])
     expect(hand.best_category).to eq('One Pair')
-end
+  end
+
+  it '#get_best_category returns High Card if nothing else if detected' do
+    hand = Hand.new(%w[2C 3S 8S 7D TD])
+    expect(hand.best_category).to eq('High Card')
+  end
+
+  describe '#set_highest_card_in_category in the event of tie' do
+
+    it 'in the event of a One Pair it find the highest for the two pair' do
+      hand = Hand.new(%w[2C 3S TS 8D 8D])
+      hand.set_highest_card_in_category
+      expect(hand.best_int_card_sorted).to eq([2, 3, 10, 8])
+    end
+
+    it 'in the event of a Two Pair it find the highest for the two pair' do
+      hand = Hand.new(%w[2C TS TS 8D 8D])
+      hand.set_highest_card_in_category
+      expect(hand.best_int_card_sorted).to eq([2, 8, 10])
+    end
+
+    it 'in the event of a Three Pair it find the highest for the two pair' do
+      hand = Hand.new(%w[3D 9C 2S 2H 2C])
+      hand.set_highest_card_in_category
+      expect(hand.best_int_card_sorted).to eq([3, 9, 2])
+    end
+
+    it 'in the event of a Full House it find the highest for the two pair' do
+      hand = Hand.new(%w[4H 4D 2C 2D 2S])
+      hand.set_highest_card_in_category
+      expect(hand.best_int_card_sorted).to eq([4, 2])
+    end
+
+    it 'in the event of a Full House it find the highest for the two pair' do
+      hand = Hand.new(%w[4H 4D 4C 2D 2S])
+      hand.set_highest_card_in_category
+      expect(hand.best_int_card_sorted).to eq([2, 4])
+    end
+
+    it 'in the event of a Four of a Kind it find the highest for the two pair' do
+      hand = Hand.new(%w[KS TS TH TD TC])
+      hand.set_highest_card_in_category
+      expect(hand.best_int_card_sorted).to eq([13, 10])
+    end
+
+    it 'in the event of any straight it just returns the sorted cards' do
+      hand = Hand.new(%w[3D 4H 5D 6D 7D])
+      hand.set_highest_card_in_category
+      expect(hand.best_int_card_sorted).to eq([3,4,5,6,7])
+    end
+
+  end
 
 end

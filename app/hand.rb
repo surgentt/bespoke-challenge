@@ -2,12 +2,13 @@ class Hand
   HAND_CATEGORIES = ['High Card', 'One Pair', 'Two Pair', 'Three of a Kind', 'Straight', 'Flush', 'Full House', 'Four of a Kind', 'Straight Flush', 'Royal Flush']
 
   attr_reader :cards, :best_category, :int_of_cards
-  attr_accessor :best_int_card_in_category, :int_count_arr
+  attr_accessor :int_count_arr, :best_int_card_sorted
 
   def initialize(cards)
     @cards = cards
     @int_of_cards = convert_face_to_int
     @best_category = get_best_category
+    @best_int_card_sorted = []
   end
 
   def get_best_category
@@ -45,10 +46,6 @@ class Hand
     }.sort
   end
 
-  def set_highest_card_in_category
-    self.best_int_card_in_category = self.int_of_cards.max
-  end
-
   def royal_flush?
     self.int_of_cards == [10, 11, 12, 13, 14] && flush?
   end
@@ -58,7 +55,7 @@ class Hand
   end
 
   def four_of_a_kind?
-    self.int_count_arr = self.int_of_cards.map {|int_of_card| self.int_of_cards.count(int_of_card)}
+    self.int_count_arr = self.int_of_cards.map{|int_of_card| self.int_of_cards.count(int_of_card)}
     self.int_count_arr.include?(4)
   end
 
@@ -90,6 +87,49 @@ class Hand
 
   def one_pair?
     self.int_count_arr.include?(2)
+  end
+
+  # Tie Break events
+
+  def set_highest_card_in_category
+    case self.best_category
+    when 'Royal Flush'
+      self.best_int_card_sorted = self.int_of_cards
+    when 'Straight Flush'
+      self.best_int_card_sorted = self.int_of_cards
+    when 'Four of a Kind'
+      self.best_int_card_sorted = sort_pairs(4)
+    when 'Full House'
+      self.best_int_card_sorted = sort_pairs(3)
+    when 'Flush'
+      self.best_int_card_sorted = self.int_of_cards
+    when 'Straight'
+      self.best_int_card_sorted = self.int_of_cards
+    when 'Three of a Kind'
+      self.best_int_card_sorted = sort_pairs(3)
+    when 'Two Pair'
+      self.best_int_card_sorted = sort_pairs(2)
+    when 'One Pair'
+      self.best_int_card_sorted = sort_pairs(2)
+    else # High Card
+      self.best_int_card_sorted = self.int_of_cards
+    end
+  end
+
+  def sort_pairs(num_of_card_pairs)
+    hand_match = []
+    top_other_card = []
+    i = 0
+    while i < self.int_of_cards.length do
+      if self.int_of_cards[i] == self.int_of_cards[i+1]
+        hand_match << self.int_of_cards[i]
+        i+=num_of_card_pairs-1
+      else
+        top_other_card << self.int_of_cards[i]
+      end
+      i+=1
+    end
+    [top_other_card, hand_match].flatten
   end
 
 end

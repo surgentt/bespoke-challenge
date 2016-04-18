@@ -28,12 +28,16 @@ class Turn
   def category_tie_breaker
     hand1.set_highest_card_in_category
     hand2.set_highest_card_in_category
-    if hand1.best_int_card_in_category > hand2.best_int_card_in_category
+    find_winner(1, hand1, hand2)
+  end
+
+  def find_winner(i, hand1, hand2)
+    if hand1.best_int_card_sorted[-i] > hand2.best_int_card_sorted[-i]
       'hand1'
-    elsif  hand1.best_int_card_in_category < hand2.best_int_card_in_category
+    elsif  hand1.best_int_card_sorted[-i] < hand2.best_int_card_sorted[-i]
       'hand2'
     else
-      puts 'This tie NEVER happen'
+      find_winner(i+1, hand1, hand2)
     end
   end
 
