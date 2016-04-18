@@ -89,7 +89,7 @@ class Hand
     self.int_count_arr.include?(2)
   end
 
-  # Tie Break events
+  # Tie Break methods
 
   def set_highest_card_in_category
     case self.best_category
@@ -100,7 +100,7 @@ class Hand
     when 'Four of a Kind'
       self.best_int_card_sorted = sort_pairs(4)
     when 'Full House'
-      self.best_int_card_sorted = sort_pairs(3)
+      self.best_int_card_sorted = sort_flush
     when 'Flush'
       self.best_int_card_sorted = self.int_of_cards
     when 'Straight'
@@ -118,18 +118,27 @@ class Hand
 
   def sort_pairs(num_of_card_pairs)
     hand_match = []
-    top_other_card = []
+    top_other_cards = []
     i = 0
     while i < self.int_of_cards.length do
       if self.int_of_cards[i] == self.int_of_cards[i+1]
         hand_match << self.int_of_cards[i]
         i+=num_of_card_pairs-1
       else
-        top_other_card << self.int_of_cards[i]
+        top_other_cards << self.int_of_cards[i]
       end
       i+=1
     end
-    [top_other_card, hand_match].flatten
+    [top_other_cards, hand_match].flatten
+  end
+
+  def sort_flush
+    if self.int_of_cards[0] == self.int_of_cards[2]
+      arr = [self.int_of_cards[-1], self.int_of_cards[0]]
+    else
+      arr = [self.int_of_cards[0], self.int_of_cards[-1]]
+    end
+    arr
   end
 
 end
